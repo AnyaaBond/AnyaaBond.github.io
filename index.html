@@ -16,16 +16,16 @@
             <button id="button1">Остановить</button>
         </form>
     </div>
-    <canvas width="1920px" height="1080px" id='star' style="border:1px solid black">Обновите браузер</canvas>
+    <canvas width="1px" height="1px" id='star' style="border:1px solid black">Обновите браузер</canvas>
     <script>
         var canvas = document.getElementById("star");
         var ctx = canvas.getContext("2d");
         canvas.width = 70 * document.documentElement.clientWidth / 100;
-        canvas.height = 90 * document.documentElement.clientHeight / 100;
+        canvas.height = 900 * document.documentElement.clientHeight / 100;
 
         window.onresize = function (e) {
             canvas.width = 70 * document.documentElement.clientWidth / 100;
-            canvas.height = 90 * document.documentElement.clientHeight / 100;
+            canvas.height = 100 * document.documentElement.clientHeight / 100;
         }
 
         var square_size;
