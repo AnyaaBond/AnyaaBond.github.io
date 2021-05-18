@@ -25,6 +25,10 @@
     </div>
     <canvas width="1px" height="1px" id='star' style="border:1px solid black">Обновите браузер</canvas>
     <script>
+        var myButton = document.getElementById('button');
+        myButton.style.height = '200px';
+        myButton.style.width= '200px';
+
         var canvas = document.getElementById("star");
         var ctx = canvas.getContext("2d");
         canvas.width = 70 * document.documentElement.clientWidth / 100;
