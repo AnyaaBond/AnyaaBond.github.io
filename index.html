@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Фигуры</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+        integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="modal">
+        <form>
+            <button id="button">Нарисовать</button>
+            <button id="button1">Остановить</button>
+        </form>
+    </div>
+    <canvas width="1920px" height="1080px" id='star' style="border:1px solid black">Обновите браузер</canvas>
+    <script>
+        var canvas = document.getElementById("star");
+        var ctx = canvas.getContext("2d");
+        canvas.width = 99 * document.documentElement.clientWidth / 100;
+        canvas.height = 75 * document.documentElement.clientHeight / 100;
+
+        window.onresize = function (e) {
+            canvas.width = 99 * document.documentElement.clientWidth / 100;
+            canvas.height = 75 * document.documentElement.clientHeight / 100;
+        }
+
+        var square_size;
+        var angle;
+        var originX;
+        var originY;
+        var line_thickness;
+        var kY;
+        var kX;
+
+
+        function triangle(x0, y0, w, h) {
+
+            ctx.strokeStyle = 'green';
+            ctx.beginPath();
+            ctx.moveTo(x0, y0);
+            ctx.lineTo(x0 + w, y0);
+            ctx.lineTo(x0, y0+h);
+            ctx.fillStyle = "green";
+            ctx.fill();
+        }
+
+        function circle(x0, y0, w, h) {
+            ctx.arc(x0 + w / 2, y0 + w / 2, w, 0, Math.PI * 2, true);
+        }
+
+        originX = 0;
+        originY = 0;
+        square_size = 50;
+        angle = Math.random() * 360;
+        kY = Math.sin(angle * Math.PI / 180);
+        kX = Math.cos(angle * Math.PI / 180);
+
+
+
+        originX1 = 0;
+        originY1 = 0;
+        square_size1 = 120;
+        square_size1_1 = 70;
+        angle1 = Math.random() * 360;
+        kY1 = Math.sin(angle1 * Math.PI / 180);
+        kX1 = Math.cos(angle1 * Math.PI / 180);
+
+
+        originX2 = 0;
+        originY2 = 0;
+        square_size2 = 40;
+        square_size2_1 = 90;
+        angle2 = Math.random() * 360;
+        kY2 = Math.sin(angle2 * Math.PI / 180);
+        kX2 = Math.cos(angle2 * Math.PI / 180)
+
+
+
+        originX3 = 0;
+        originY3 = 0;
+        square_size3 = 60;
+        angle3 = Math.random() * 360;
+        kY3 = Math.sin(angle3 * Math.PI / 180);
+        kX3 = Math.cos(angle3 * Math.PI / 180)
+
+
+        function drawCrest(x, y, w, h) {
+            ctx.fillRect(x, y + w / 2 - h / 2, w, h)
+            ctx.fillRect(x + w / 2 - h / 2, y, h, w)
+            ctx.fillStyle = "red";
+            ctx.fill();
+
+        }
+
+
+        function move() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); //очистка холста
+            originY += kY;
+            originX += kX;
+
+            originY1 += kY1;
+            originX1 += kX1;
+
+            originY2 += kY2;
+            originX2 += kX2;
+
+            originY3 += kY3;
+            originX3 += kX3;
+
+            if (square_size + originX > canvas.width || originX < 0) { // право levo
+                kX *= -1;
+            }
+            if (originY < 0 || square_size + originY > canvas.height) { // верх niz
+                kY *= -1;
+            }
+
+            if (square_size1 + originX1 > canvas.width || originX1 < 0) { // право levo
+                kX1 *= -1;
+            }
+            if (originY1 < 0 || square_size1_1 + originY1 > canvas.height) { // верх niz
+                kY1 *= -1;
+            }
+
+
+            if (square_size2_1 + originX2 > canvas.width || originX2 < 0) { // право levo
+                kX2 *= -1;
+            }
+            if (originY2 < 0 || square_size2_1 + originY2 > canvas.height) { // верх niz
+                kY2 *= -1;
+            }
+
+
+            if (square_size3 + originX3 > canvas.width || originX3 < 0) { // право levo
+                kX3 *= -1;
+            }
+            if (originY3 < 0 || square_size3 + originY3 > canvas.height) { // верх niz
+                kY3 *= -1;
+            }
+
+            triangle(originX3, originY3, square_size3, square_size3)
+
+            ctx.strokeRect(originX1, originY1, square_size1, square_size1_1)
+
+            ctx.fillRect(originX, originY, square_size, square_size)
+            ctx.fillStyle = "blue";
+            ctx.fill();
+
+
+            drawCrest(originX2, originY2, square_size2, square_size2_1)
+
+            
+
+            // circle(originX , originY ,square_size, square_size);
+
+        }
+
+        triangle(originX3, originY3, square_size3, square_size3)
+
+ctx.strokeRect(originX1, originY1, square_size1, square_size1_1)
+
+ctx.fillRect(originX, originY, square_size, square_size)
+ctx.fillStyle = "blue";
+ctx.fill();
+
+
+drawCrest(originX2, originY2, square_size2, square_size2_1)
+
+
+        let numInterval;
+        $("#button1").click(function (e) {
+            e.preventDefault(); // или же return false
+            clearInterval(numInterval);
+        });
+        $("#button").click(function (e) {
+            e.preventDefault();
+            numInterval = setInterval(
+                function () {
+                    move();
+                }, 0.1)
+        });
+
+    </script>
+</body>
+
+</html>
