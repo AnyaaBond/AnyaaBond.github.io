@@ -29,12 +29,12 @@
 
         var canvas = document.getElementById("star");
         var ctx = canvas.getContext("2d");
-        canvas.width = 88 * document.documentElement.clientWidth / 100;
-        canvas.height = 90 * document.documentElement.clientHeight / 100;
+        canvas.width = 95 * document.documentElement.clientWidth / 100;
+        canvas.height = 95 * document.documentElement.clientHeight / 100;
 
         window.onresize = function (e) {
-            canvas.width = 88 * document.documentElement.clientWidth / 100;
-            canvas.height = 90 * document.documentElement.clientHeight / 100;
+            canvas.width = 95 * document.documentElement.clientWidth / 100;
+            canvas.height = 95 * document.documentElement.clientHeight / 100;
         }
 
         var square_size;
@@ -98,9 +98,14 @@
 
 
         function drawCrest(x, y, w, h) {
-            ctx.strokeRect(x, y, w, w)
-            ctx.fillRect(x, y + w / 2 - h / 2, w, h)
-            ctx.fillRect(x + w / 2 - h / 2, y, h, w)
+     
+            ctx.strokeRect(x , y, h, h)
+
+            ctx.fillRect(x + w/2 , y + w  - h / 2 , w, h)
+            ctx.fillRect(x + w  - h/2, y + w/2, h, w)
+
+
+            
             ctx.fillStyle = "red";
             ctx.fill();
 
@@ -136,7 +141,7 @@
             }
 
 
-            if (square_size2_1 + originX2 > canvas.width || originX2 < 0) { // право levo
+            if (square_size2_1 + originX2   > canvas.width || originX2 < 0) { // право levo
                 kX2 *= -1;
             }
             if (originY2 < 0 || square_size2_1 + originY2 > canvas.height) { // верх niz
@@ -144,7 +149,7 @@
             }
 
 
-            if (square_size3 + originX3 > canvas.width || originX3 < 0) { // право levo
+            if (square_size3 + originX3   > canvas.width || originX3 < 0) { // право levo
                 kX3 *= -1;
             }
             if (originY3 < 0 || square_size3 + originY3 > canvas.height) { // верх niz
